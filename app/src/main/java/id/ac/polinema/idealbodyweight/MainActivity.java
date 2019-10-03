@@ -7,14 +7,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import id.ac.polinema.idealbodyweight.Fragments.BlankFragment;
+
 public class MainActivity extends AppCompatActivity {
 
 	// Deklarasikan atribut Fragment di sini
+	BlankFragment blankFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+		blankFragment = BlankFragment.newInstance("Sulthan Rafif");
 	}
 
 	@Override
@@ -26,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		// TODO: Tambahkan penanganan menu di sini
+		if(item.getItemId() == R.id.menu_about){
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fragment_container, blankFragment)
+					.addToBackStack(null)
+					.commit();
+		}
+
 
 		return super.onOptionsItemSelected(item);
 	}
